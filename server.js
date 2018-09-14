@@ -23,6 +23,9 @@ app.use('/', route);
 
 //Servidor Ouvindo na Porta
 server.listen(port);
+
+server.on('error', onError);
+
 console.log('API rodando na porta '+ port);
 
 //Normalizando a Porta (express-generator)
@@ -38,4 +41,26 @@ function normalizePort(val){
     }
     //Não retorna valor nenhum valor
     return false;
+}
+
+//Tratando Erros da Porta (express-generator)
+function onError(error){
+    if(error.syscall !== 'listen'){
+        throw error;
+    }
+
+    const bind = typeof port === 'string' ? 'Pipe ' + port : 'Porta ' + port;
+
+    switch(error.code){
+        case 'EACCES':
+            console.error(bind + 'requer privilégio mais elevado para acesso');
+            process.exit(1);
+            break;
+        case 'EADDRINUSE':
+            console.error(bind + ' já está em uso');
+            process.exit(1);
+            break;
+        default:
+        throw error;
+    }
 }

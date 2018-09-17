@@ -2,14 +2,12 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
+const router = express.Router();
 
-let app = express();
+const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
-
-const router = express.Router();
-
 
 
 //Criamos a Rota
@@ -22,6 +20,9 @@ const route = router.get('/', (req, res, next) =>{
 
 const create = router.post('/', (req, res, next) =>{
     res.status(200).send(req.body);
+});
+const create = router.put('/:id', (req, res, next) =>{
+    res.status(201).send(req.body);
 });
 //Atribuimos a Rota no app
 app.use('/', route);

@@ -3,12 +3,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
+let app = express();
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 
 const router = express.Router();
 
-let app = express();
+
 
 //Criamos a Rota
 const route = router.get('/', (req, res, next) =>{

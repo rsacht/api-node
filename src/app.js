@@ -2,6 +2,9 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
+
+app.use(bodyParser.json());
+
 const router = express.Router();
 
 let app = express();

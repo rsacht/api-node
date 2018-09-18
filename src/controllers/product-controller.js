@@ -5,7 +5,7 @@ const Product = mongoose.model('Product');
 
 exports.get = (req, res, next) =>{
     Product
-    .find({})//busca tudo
+    .find({active: true}, 'title price slug')//busca tudo
     .then(data =>{//Tem resultado
         res.status(200).send(data);
     }).catch(e =>{//ou tem erro

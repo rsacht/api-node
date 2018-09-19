@@ -13,6 +13,19 @@ exports.get = (req, res, next) =>{
     });
 }
 
+exports.getBySlug = (req, res, next) =>{
+    Product
+    .findOne({
+        slug: req.params.slug,
+        active: true
+    }, 'title description price slug tags')//busca tudo
+    .then(data =>{//Tem resultado
+        res.status(200).send(data);
+    }).catch(e =>{//ou tem erro
+        res.status(400).send(e);
+    });
+}
+
 exports.post = (req, res, next) => {
     var product = new Product(req.body);
 

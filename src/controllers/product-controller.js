@@ -14,37 +14,39 @@ exports.get = async(req, res, next) =>{
             message: 'Falha ao processar sua requisição'
         });
     }   
+}
+
+exports.getBySlug = async (req, res, next) =>{
+    try{
+        var data = await repository.getBySlug(req.params.slug);
+            res.status(200).send(data);
+        }catch (e) {
+            res.status(500).send({
+                message: 'Falha ao processar sua requisição'
+            });
+        }   
+};
+exports.getById = async (req, res, next) =>{
+    try{
+        var data = await repository.getById(req.params.id);
+            res.status(200).send(data);
+        }catch (e) {
+            res.status(500).send({
+                message: 'Falha ao processar sua requisição'
+            });
+        }   
 };
 
-exports.getBySlug = (req, res, next) =>{
-    repository
-    .getBySlug(req.params.slug)
-    .then(data =>{//Tem resultado
+exports.getByTag = async (req, res, next) =>{
+    try{
+        const data = await repository.getByTag(req.params.tag);
         res.status(200).send(data);
-    }).catch(e =>{//ou tem erro
-        res.status(400).send(e);
-    });
-};
-
-exports.getById = (req, res, next) =>{
-    repository
-    .getById(req.params.id)
-    .then(data =>{
-        res.status(200).send(data);
-    }).catch(e =>{
-        res.status(400).send(e);
-    });
-};
-
-exports.getByTag = (req, res, next) =>{
-    repository
-    .getByTag(req.params.tag)
-    .then(data =>{
-        res.status(200).send(data);
-    }).catch(e =>{
-        res.status(400).send(e);
-    });
-};
+    }catch (e) {
+        res.status(500).send({
+            message: 'Falha ao processar sua requisição'
+        });
+    }
+}
 
 exports.post = (req, res, next) => {
     let contract = new ValidationContract();
@@ -100,5 +102,4 @@ exports.delete = (req, res, next) =>{
             data: e
         });
     });
-};
-
+}

@@ -72,15 +72,10 @@ exports.post = (req, res, next) => {
 };
 
 exports.put = (req, res, next) =>{
-    Product
-    .findByIdAndUpdate(req.params.id,{
-        $set:{
-            title: req.body.title,
-            description: req.body.description,
-            price: req.body.price,
-            slug: req.body.slug
-        }
-    }).then(x =>{
+    repository
+    .update(req.params.id, req.body)
+    .update(req.body)
+    .then(x =>{
         res.status(200).send({
             message: 'Produto atualizado com sucesso!'
         });

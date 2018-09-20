@@ -57,11 +57,8 @@ exports.post = (req, res, next) => {
         res.status(400).send(contract.errors()).end();
         return;
     }
-
-    var product = new Product(req.body);
-
-    product
-        .save()
+    repository
+        .create(req.body)
         .then(x =>{
             res.status(201).send({
                 message: 'Produto Cadastrado com Sucesso!'

@@ -30,3 +30,8 @@ exports.getByTag = (tag)=> {
         active: true
     }, 'title description price slug tags');
 }
+
+exports.create = (data)=> {
+    var product = new Product(data);
+    return product.save();
+}

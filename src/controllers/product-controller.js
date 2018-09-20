@@ -26,8 +26,8 @@ exports.getBySlug = (req, res, next) =>{
 };
 
 exports.getById = (req, res, next) =>{
-    Product
-    .findById(req.params.id)
+    repository
+    .getById(req.params.id)
     .then(data =>{
         res.status(200).send(data);
     }).catch(e =>{
@@ -36,11 +36,8 @@ exports.getById = (req, res, next) =>{
 };
 
 exports.getByTag = (req, res, next) =>{
-    Product
-    .find({
-        tags:req.params.tag,
-        active: true
-    }, 'title description price slug tags')
+    repository
+    .getByTag(req.params.tag)
     .then(data =>{
         res.status(200).send(data);
     }).catch(e =>{

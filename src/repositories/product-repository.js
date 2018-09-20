@@ -15,5 +15,18 @@ exports.getBySlug = (slug) =>{
     .findOne({
         slug: slug,
         active: true
-    }, 'title description price slug tags')
+    }, 'title description price slug tags');
+}
+
+exports.getById = (id) => {
+    return Product
+        .findById(id);
+}
+
+exports.getByTag = (tag)=> {
+    return Product
+    .find({
+        tags:tag,
+        active: true
+    }, 'title description price slug tags');
 }

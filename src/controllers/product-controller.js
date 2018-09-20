@@ -3,10 +3,11 @@
 const mongoose = require('mongoose');
 const Product = mongoose.model('Product');
 const ValidationContract = require('../validators/fluent-validator');
+const repository = require('../repositories/product-repository');
 
 exports.get = (req, res, next) =>{
-    Product
-    .find({active: true}, 'title price slug')//busca tudo
+    repository
+    .get()
     .then(data =>{//Tem resultado
         res.status(200).send(data);
     }).catch(e =>{//ou tem erro

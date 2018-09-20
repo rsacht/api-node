@@ -25,12 +25,12 @@ const schema = new Schema({
     },
     items: [{
         quantity: {
-            type: number,
+            type: Number,
             required: true,
             default: 1
         },
         price:{
-            type: number,
+            type: Number,
             required: true
         },
         product:{

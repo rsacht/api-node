@@ -16,11 +16,8 @@ exports.get = (req, res, next) =>{
 };
 
 exports.getBySlug = (req, res, next) =>{
-    Product
-    .findOne({
-        slug: req.params.slug,
-        active: true
-    }, 'title description price slug tags')//busca tudo
+    repository
+    .getBySlug(req.params.slug)
     .then(data =>{//Tem resultado
         res.status(200).send(data);
     }).catch(e =>{//ou tem erro

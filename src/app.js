@@ -8,6 +8,7 @@ const router = express.Router();
 
 //Conexão com o Banco de Dados
 mongoose.connect('mongodb://nodebr-user:node123456@ds261302.mlab.com:61302/nodedb',{useNewUrlParser:true});
+mongoose.set('useCreateIndex', true);
 
 //Carrega os Models
 const Product = require('./models/product');

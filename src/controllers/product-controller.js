@@ -5,14 +5,9 @@ const Product = mongoose.model('Product');
 const ValidationContract = require('../validators/fluent-validator');
 const repository = require('../repositories/product-repository');
 
-exports.get = (req, res, next) =>{
-    repository
-    .get()
-    .then(data =>{//Tem resultado
+exports.get = async(req, res, next) =>{
+    var data = await repository.get();
         res.status(200).send(data);
-    }).catch(e =>{//ou tem erro
-        res.status(400).send(e);
-    });
 };
 
 exports.getBySlug = (req, res, next) =>{
@@ -88,8 +83,8 @@ exports.put = (req, res, next) =>{
 };
 
 exports.delete = (req, res, next) =>{
-    Product
-    .findOneAndRemove(req.body.id).then(x =>{
+    repository.delete(req.body.id)
+    .then(x =>{
         res.status(200).send({
             message: 'Produto removido com sucesso!'
         });

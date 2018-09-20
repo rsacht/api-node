@@ -3,11 +3,11 @@
 const mongoose = require('mongoose');
 const Product = mongoose.model('Product');
 
-exports.get = () =>{
-    return Product
-    .find({
+exports.get = async() =>{
+    const res = await Product.find({
         active: true
     },'title price slug');
+    return res;
 }
 
 exports.getBySlug = (slug) =>{
@@ -46,4 +46,9 @@ exports.update = (id, data) => {
             slug: data.slug
         }
     });
+}
+
+exports.delete = (id) => {
+    return Product
+    .findOneAndRemove(id);
 }

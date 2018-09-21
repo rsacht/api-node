@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@sendgrid/mail": "^6.3.1",
     "body-parser": "^1.18.3",
     "debug": "^4.0.1",
     "express": "^4.16.3",
@@ -17,6 +18,7 @@
     "http": "0.0.0",
     "md5": "^2.2.1",
     "mongoose": "^5.2.15",
-    "node-uuid": "^1.4.8"
+    "node-uuid": "^1.4.8",
+    "sendgrid": "^5.2.3"
   }
 }

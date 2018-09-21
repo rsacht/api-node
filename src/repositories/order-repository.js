@@ -7,7 +7,7 @@ exports.get = async (data)=> {
     var res = await Order
     .find({}, 'number status')
     .populate('customer')
-    .populate('items.product');
+    .populate('items.product', 'title');
     return res;
 }
 

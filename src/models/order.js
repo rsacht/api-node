@@ -15,13 +15,13 @@ const schema = new Schema({
     createDate: {
         type: Date,
         required: true,
-        dafault: Date.now
+        default: Date.now
     },
     status: {
         type: String,
         required: true,
         enum: ['created', 'done'],
-        dafault: 'created'
+        default: 'created'
     },
     items: [{
         quantity: {

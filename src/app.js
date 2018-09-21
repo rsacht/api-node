@@ -28,7 +28,7 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use('/', indexRoute);
 app.use('/products', productRoute);
 app.use('/customers', customerRoute);
-app.use('/order', orderRoute);
+app.use('/orders', orderRoute);
 
 //Exportando o app
 module.exports = app;

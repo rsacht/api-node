@@ -1,7 +1,8 @@
 'use strict';
 
 const repository = require('../repositories/order-repository');
-const uuid = require('node-uuid');
+//const uuid = require('node-uuid');
+const guid = require('guid');
 
 exports.get = async(req, res, next) =>{
     try {
@@ -17,7 +18,7 @@ exports.post = async (req, res, next) => {
     try {
         await repository.create({
             customer:req.body.customer,
-            number:uuid.raw().substring(0,6),
+            number:guid.raw().substring(0, 6),
             items:req.body.items
         });
         res.status(201).send({
@@ -25,7 +26,7 @@ exports.post = async (req, res, next) => {
         });
     } catch (e) {
         res.status(500).send({
-            message: 'Falha ao processar sua requisição'
+            message: e
         });
     }
 };

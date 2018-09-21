@@ -5,7 +5,7 @@ const Order = mongoose.model('Order');
 
 exports.get = async (data)=> {
     var res = await Order
-    .find({}, 'number status')
+    .find({}, 'number status customer items')
     .populate('customer', 'name')
     .populate('items.product', 'title');
     return res;

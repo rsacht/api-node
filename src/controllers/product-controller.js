@@ -87,7 +87,15 @@ exports.post = async (req, res, next) => {
             }
         });
 
-        await repository.create(req.body);
+        await repository.create({
+            title: req.body.title,
+            slug: req.body.slug,
+            description: req.body.description,
+            price: req.body.price,
+            active: true,
+            tags: req.body.tags,
+            image: 'https://rsacht.blob.core.windows.net/product-images/' + filename
+        });
         res.status(201).send({
             message: 'Produto cadastrado com sucesso!'
         });

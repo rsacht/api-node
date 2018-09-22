@@ -60,6 +60,9 @@ exports.post = async (req, res, next) => {
     }
 
     try{
+        //Cria o Blob Service
+        const blobSvc = azure.createBlobService(config.userImagesBlobConnectionString);
+        
         await repository.create(req.body);
         res.status(201).send({
             message: 'Produto cadastrado com sucesso!'

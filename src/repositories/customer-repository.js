@@ -2,9 +2,18 @@
 
 const mongoose = require('mongoose');
 const Customer = mongoose.model('Customer');
+const authService = require('../services/auth-service');
 
 
 exports.create = async (data)=> {
     var customer = new Customer(data);
     await customer.save();
+}
+
+exports.authenticate = async (data) => {
+    const res = await Customer.findOne({
+       email:data.email,
+       password: data.password
+    });
+    return res;
 }

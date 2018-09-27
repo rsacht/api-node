@@ -33,3 +33,32 @@ exports.authorize = function (req, res, next){
         });
     }
 }
+
+exports.isAdmin = function (req, res, next){
+    //Busca o Token
+    var token = req.body.token || req.query.token || req.headers['x-access-token'];
+    //Se não encontrou o Token bloqueia o acesso
+    if(!token){
+        res.status(401).json({
+            message: 'Token Inválido'
+        });
+    }else{
+        //Existindo o Token, o sistema tentará efetuar a decodificação
+        jwt.verify(token, global.SALT_KEY, function(error, decoded){
+            //Se não for possível decodificar retorna mensagem de erro
+            if(error){
+                res.status(401).json({
+                    message: 'Token Inválido'
+                });
+            }else{
+                if (decoded.roles.includes('admin')){
+                    next();
+                }else{
+                    res.status(403).json({
+                        message: 'Esta funcionalidade é restrita para administradores'
+                    });
+                }
+            }
+        });
+    }
+}

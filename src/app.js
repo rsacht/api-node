@@ -22,7 +22,7 @@ const productRoute = require('./routes/product-route');
 const customerRoute = require('./routes/customer-route');
 const orderRoute = require('./routes/order-route');
 
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit:'5mb'}));
 app.use(bodyParser.urlencoded({extended:false}));
 
 //Atribuimos a Rota no app
